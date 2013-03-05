@@ -14,7 +14,6 @@ block header
 
 
 block content
-	
 	mixin getDate(time)
 		var date = new Date(time*1000); return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()}
 
@@ -25,8 +24,6 @@ block content
 				p #{checkin.venue.location.city}, #{checkin.venue.location.state}
 
 	#main
-		
-
 		#info
 			.divider
 				.innerDivider
@@ -34,8 +31,6 @@ block content
 			ul(data-role="listview", data-inset="false")
 				each checkin in checkins
 					+listItem(user, checkin)
-
-		
 
 		#deliveryList
 			.divider
