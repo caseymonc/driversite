@@ -26,10 +26,16 @@ block content
 				p #{checkin.venue.location.city}, #{checkin.venue.location.state}
 
 	.side_bar
+		.divider
+			.innerDivider
 		#checkin_list
 			ul(data-role="listview", data-inset="false")
 				each checkin in checkins
 					+listItem(user, checkin)
+
+	.main_content
+		.divider
+			.innerDivider
 
 block footer
 	a(href="/profile/#{user_id}/uri", data-transition="slide", style="margin:4px") Register Event URL
