@@ -1,12 +1,86 @@
-.side_bar{
-	width: 30%;
-	height: 100%;
-	float: left;
-}
 
 #checkin_list{
 	width: 100%;
 	margin-top: 200px;
+}
+
+#main{
+	height: 100%;
+	width: 100%;
+}
+
+#info{
+	height: 100%;
+	width: 30%;
+	float: left;
+
+	-webkit-box-shadow: inset 0 6px 6px -6px black;
+	   -moz-box-shadow: inset 0 6px 6px -6px black;
+	        box-shadow: inset 0 6px 6px -6px black;
+
+	/*background-image: url(/images/furley_bg.png);*/
+	background: #eeeeee; /* Old browsers */
+background: -moz-linear-gradient(top,  #eeeeee 0%, #dddddd 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #eeeeee 0%,#dddddd 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+#deliveryList{
+	height: 100%;
+	width: 70%;
+	float: left;
+
+	-webkit-box-shadow: inset 0 6px 6px -6px black;
+	   -moz-box-shadow: inset 0 6px 6px -6px black;
+	        box-shadow: inset 0 6px 6px -6px black;
+
+	/*background-image: url(/images/furley_bg.png);*/
+	background-color: #555555;
+}
+
+#shopImage{
+	-moz-border-radius: 15px;
+			 border-radius: 15px;
+	width: 70%;
+	margin-left: 15%;
+	margin-top: 5%;
+	-moz-box-shadow:    1px 1px 2px 3px #aaa;
+  -webkit-box-shadow: 1px 1px 2px 3px #aaa;
+  box-shadow:         1px 1px 2px 3px #aaa;
+  display: none;
+}
+
+.desc{
+	margin: 5px;
+	margin-left: 16%;
+	padding: 0px	
+}
+
+.center{
+	width: 80%;
+	margin: auto;
+	text-align: center;
+	color: #7A6148
+}
+
+#delivery{
+	margin-top: 30px;
+	width: 97%;
+	float: left;
+
+	background-image: url(/images/furley_bg.png);
+
+}
+
+#page{
+	height: 100%;
+	width: 100%;
 }
 
 .divider{
@@ -18,6 +92,15 @@
 
 }
 
+.order{
+	margin: 0px !important;
+}
+
+.label{
+	float: left;
+	padding: 5px;
+}
+
 .innerDivider{
 	height: 100%;
 	width: 100%;
@@ -25,8 +108,19 @@
 	background-color: rgba(140,98,57,.3);
 }
 
-.main_content{
-	width: 70%;
+ul{
+	margin: 0px !important;
+}
+
+.ui-content{
+	padding: 0px;
 	height: 100%;
-	float: left;
+}
+
+.ui-page-active{
+	height: 100%;
+}
+
+.hiddenDiv{
+	display: none;
 }
