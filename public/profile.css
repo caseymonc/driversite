@@ -1,0 +1,10 @@
+.side_bar{
+	width: 30%;
+	height: 100%;
+	float: left;
+}
+
+#checkin_list{
+	width: 100%;
+	margin-top: 200px;
+}
