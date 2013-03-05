@@ -83,6 +83,9 @@ exports.createServer = ->
 		app.use('/javascript', express.static(__dirname + "/public/javascript"))
 
 
+	app.get '/', (req, res)->
+		res.redirect '/login'
+
 	app.get "/app", (req, res)->
 		ensureAuthenticated req, res, ()->
 			res.redirect '/profile/' + req.session.account.foursquareId
