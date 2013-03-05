@@ -10,7 +10,7 @@ block header
 block content
 	#main
 		#login
-			form(name="loginForm", action="/login", method="post")
+			form(name="loginForm", action="/login", method="post", data-ajax="false")
 				input(type="text", name="username", id="username", value="", placeholder="Username")
 				input(type="password", name="password", id="password", value="", placeholder="Password")
 				#buttonWrapper
