@@ -24,3 +24,9 @@
 
 	background-color: rgba(140,98,57,.3);
 }
+
+.main_content{
+	width: 70%;
+	height: 100%;
+	float: left;
+}
