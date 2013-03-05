@@ -38,9 +38,6 @@ block content
 				div(data-role="collapsible", class="order", data-theme="b", data-collapsed-icon="arrow-d", data-inset="true", data-expanded-icon="arrow-u")
 					h4 #{address}
 
-			each delivery in deliveries
-				+listItem("1375 N 90 E", "23452345345")
-
 
 block footer
 	a(href="/profile/#{user_id}/uri", data-transition="slide", style="margin:4px") Register Event URL
