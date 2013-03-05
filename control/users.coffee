@@ -16,9 +16,6 @@ module.exports = (User, Account) =>
 				return res.render 'profile', {checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
 
 
-	renderProfileEventForm: (req, res)=>
-		return res.render 'uri', {user_id: req.params.user_id, title: "Profile"}
-
 	login: (req, res)=>
 		console.log 'Endpoint: Login'
 		return res.redirect "/ 1" unless (req.body.username? and req.body.password)

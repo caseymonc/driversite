@@ -86,15 +86,8 @@ exports.createServer = ->
 	app.get '/', (req, res)->
 		res.redirect '/login'
 
-	app.get "/app", (req, res)->
-		ensureAuthenticated req, res, ()->
-			res.redirect '/profile/' + req.session.account.foursquareId
-
 	app.get '/profile/:user_id', (req, res)->
 		UserController.renderProfile req, res
-
-	app.get '/profile/:user_id/uri', (req, res)->
-		UserController.renderProfileEventForm req, res
 
 	app.get "/profiles", (req, res)->
 		return UserController.renderProfileList req, res
