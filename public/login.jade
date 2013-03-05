@@ -1,0 +1,24 @@
+extends layout
+
+append scripts
+	link(rel="stylesheet", href="/login.css")
+
+block header
+	h1 #{title}
+	a(href="/profiles") Users
+
+block content
+	#main
+		#login
+			form(name="loginForm", action="/login", method="post")
+				input(type="text", name="username", id="username", value="", placeholder="Username")
+				input(type="password", name="password", id="password", value="", placeholder="Password")
+				#buttonWrapper
+					input(type="submit", name="loginButton", id="loginButton", value="", value="Login")
+
+
+block footer
+
+
+
+	

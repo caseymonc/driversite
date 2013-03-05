@@ -1,0 +1,22 @@
+extends layout
+
+append scripts
+	link(rel="stylesheet", href="/login.css")
+
+block header
+	h1 #{title}
+	a(href="/profiles") Users
+	a(href="/logout", class="ui-btn-right", rel="external") Logout
+
+block content
+	#main
+		#login
+			a(href="/auth/foursquare/", rel="external")
+				img(src="/images/connect-black@2x.png")
+
+
+block footer
+
+
+
+	

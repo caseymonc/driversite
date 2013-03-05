@@ -1,0 +1,20 @@
+extends layout
+
+
+block header
+	h1 #{title}
+	if logged_in
+		a(href="/logout", class="ui-btn-right", rel="external") Logout
+	else
+		a(href="/login", class="ui-btn-right", rel="external") Login
+
+block content
+	mixin listItem(name, user_id, photo, city)
+		li(data-icon="arrow-r")
+			a(href="/profile/#{user_id}", data-transition="slide") 
+				img(src="#{photo}")
+				h3 #{name.givenName} #{name.familyName}
+				p #{city}
+	ul(data-role="listview", data-inset="true")
+		each user in users
+			+listItem(user.name, user.foursquareId, user.photo, user.homeCity)

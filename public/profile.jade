@@ -1,0 +1,30 @@
+extends layout
+
+
+block header
+	a(href="/profiles", data-transition="slide", data-direction="reverse") Users
+	h1 #{title}
+	if logged_in
+		a(href="/logout", class="ui-btn-right", rel="external") Logout
+	else
+		a(href="/login", class="ui-btn-right", rel="external") Login
+
+
+block content
+
+	script(type="text/javascript")
+	mixin getDate(time)
+		var date = new Date(time*1000); return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()}
+
+	mixin listItem(user, checkin)
+		li(data-icon="arrow-r")
+			a(href="http://maps.google.com/maps?q=#{checkin.venue.location.lat},#{checkin.venue.location.lng}", rel="external", target="_blank")
+				h3 #{user.name.givenName} #{user.name.familyName} checked in at #{checkin.venue.name}
+				p #{checkin.venue.location.city}, #{checkin.venue.location.state}
+
+	ul(data-role="listview", data-inset="true")
+		each checkin in checkins
+			+listItem(user, checkin)
+
+block footer
+	a(href="/profile/#{user_id}/uri", data-transition="slide", style="margin:4px") Register Event URL
