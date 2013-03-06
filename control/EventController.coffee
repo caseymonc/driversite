@@ -8,6 +8,8 @@ module.exports = (EventEmitter) =>
 		console.log "name: " + name
 		console.log "data: " + JSON.stringify data
 
+		data = {}
+
 		data._domain = domain
 		data._name = name
 
