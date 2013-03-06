@@ -1,6 +1,6 @@
 request = require "request"
 
-module.exports = (User, Account) =>
+module.exports = (User, Account, EventController) =>
 	
 	renderProfile: (req, res)=>
 		console.log 'Endpoint: Profile'
@@ -15,6 +15,10 @@ module.exports = (User, Account) =>
 				console.log JSON.stringify body
 				return res.render 'profile', {checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
 
+	registerEventUrl: (req, res)=>
+		url = "http://localhost:3000/event"
+		data = {uri: req.protocol + "://" + req.get('host') + "/users/" + req.session.user._id + "/event"}
+		EventController.sendExternalEvent "rfq", "driver_ready", data
 
 	login: (req, res)=>
 		console.log 'Endpoint: Login'

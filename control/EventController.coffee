@@ -1,7 +1,7 @@
 request = require "request"
 
-module.exports = () =>
-	emitEvent: (url, domain, name, data)=>
+module.exports = (EventEmitter) =>
+	sendExternalEvent: (url, domain, name, data)=>
 		console.log "Emit Event"
 		console.log "Url: " + url
 		console.log "domain: " + domain
@@ -17,3 +17,12 @@ module.exports = () =>
 
 		request.post options, (e, r, body)=>
 			return;
+
+	handleEvent: (req, res)=>
+		data = req.body
+		domain = data._domain
+		name = data._name
+
+		if domain? && name?
+			EventEmitter.emit domain + ":" + name, data
+			console.log "Emit Event: " + domain + ":" + name

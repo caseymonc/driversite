@@ -16,8 +16,11 @@ DB = process.env.DB || 'mongodb://localhost:27017/shop'
 db = Mongoose.createConnection DB
 User = UserModel db
 Account = AccountModel db
+
+EventController = require('./control/EventController')()
+
 UserControl = require('./control/users')
-UserController = new UserControl User, Account
+UserController = new UserControl User, Account, EventController
 
 mongomate = require('mongomate')('mongodb://localhost')
 
@@ -109,6 +112,12 @@ exports.createServer = ->
 		req.session.destroy()
 		return res.redirect '/login/foursquare'
 
+	app.get '/users/:user_id/register/uri', (req, res)->
+		UserController.registerEventUrl req, res
+		UserController.renderProfile req, res
+
+	app.post '/users/:user_id/event', (req, res)->
+		return res.send "OK"
 
 	app.get '/auth/foursquare', passport.authenticate('foursquare')
 
