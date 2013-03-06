@@ -26,6 +26,10 @@ block content
 						p #{checkin.venue.location.city}, #{checkin.venue.location.state}
 			.divider
 				.innerDivider
+
+			#driverImage
+				img(src="#{user.photo}")
+
 			#checkin_list
 				ul(data-role="listview", data-inset="false")
 					li(data-role="list-divider", data-theme="b") Checkins
