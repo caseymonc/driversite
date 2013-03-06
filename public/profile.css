@@ -9,11 +9,12 @@
 }
 
 #driverImage img{
-	margin-right: 25%;
 	margin-left: 25%;
 	margin-top: 50px;
 	margin-bottom: 50px;
 	width: 50%;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
 }
 
 #info{
