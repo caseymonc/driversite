@@ -18,7 +18,7 @@ module.exports = (User, Account, EventController) =>
 	registerEventUrl: (req, res)=>
 		url = "http://localhost:3000/event"
 		data = {uri: req.protocol + "://" + req.get('host') + "/users/" + req.session.user._id + "/event"}
-		EventController.sendExternalEvent "rfq", "driver_ready", data
+		EventController.sendExternalEvent url, "rfq", "driver_ready", data
 
 	login: (req, res)=>
 		console.log 'Endpoint: Login'
