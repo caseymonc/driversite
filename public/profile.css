@@ -9,9 +9,9 @@
 }
 
 #driverImage img{
-	margin-left: 25%;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-left: 24%;
+	margin-top: 30px;
+	margin-bottom: 30px;
 	width: 50%;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
@@ -19,7 +19,7 @@
 
 #info{
 	height: 100%;
-	width: 30%;
+	width: 25%;
 	float: left;
 
 	-webkit-box-shadow: inset 0 6px 6px -6px black;
@@ -41,7 +41,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', end
 
 #deliveryList{
 	height: 100%;
-	width: 70%;
+	width: 75%;
 	float: left;
 
 	-webkit-box-shadow: inset 0 6px 6px -6px black;
