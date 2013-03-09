@@ -4,12 +4,12 @@ Schema = mongoose.Schema
 # User Model
 module.exports = (db) ->
 
-  UserSchema = new Schema {
+  UserSchema = new Schema({
     username: String,
     password: String,
     foursquareId: String,
     flowershopId: String
-  }
+  }, { collection : 'driver_users' })
 
 
   # Get All Users for a group

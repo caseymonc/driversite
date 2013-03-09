@@ -23,6 +23,8 @@ module.exports = (EventEmitter) =>
 		domain = data._domain
 		name = data._name
 
+		data.user_id = req.params.user_id if req?.params?.user_id?
+
 		if domain? && name?
 			EventEmitter.emit domain + ":" + name, data
 			console.log "Emit Event: " + domain + ":" + name

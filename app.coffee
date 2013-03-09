@@ -18,6 +18,7 @@ User = UserModel db
 Account = AccountModel db
 
 EventController = require('./control/EventController')()
+DeliveryController = require('./control/DeliveryController')()
 
 UserControl = require('./control/users')
 UserController = new UserControl User, Account, EventController
@@ -117,7 +118,11 @@ exports.createServer = ->
 		UserController.renderProfile req, res
 
 	app.post '/users/:user_id/event', (req, res)->
+		EventController.handleEvent req, res
 		return res.send "OK"
+
+	EventEmitter.on "rfq:delivery_ready", (body)=>
+		DeliveryController.addDelivery body
 
 	app.get '/auth/foursquare', passport.authenticate('foursquare')
 

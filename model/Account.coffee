@@ -4,7 +4,7 @@ Schema = mongoose.Schema
 # User Model
 module.exports = (db) ->
 
-  AccountSchema = new Schema {
+  AccountSchema = new Schema({
     foursquareId: {type: String, required:true, unique: true},
     name: {familyName: String, givenName: String},
     gender: String,
@@ -14,7 +14,7 @@ module.exports = (db) ->
     photo: String,
     homeCity: String,
     uri: String
-  }
+  }, { collection : 'driver_accounts' })
 
 
   AccountSchema.statics.getAllRegisteredDrivers = (cb) ->
