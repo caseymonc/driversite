@@ -16,7 +16,8 @@
     "passport-foursquare": "0.1.2",
     "jade": "0.28.1",
     "mongomate": "0.2.0",
-    "mongodb": "~1.2.11"
+    "mongodb": "~1.2.11",
+    "event": "~1.0.0"
   },
   "engines": {
     "node": "0.6.x"
