@@ -9,6 +9,8 @@ passport = require 'passport'
 LocalStrategy = require('passport-local').Strategy
 FoursquareStrategy = require('passport-foursquare').Strategy
 
+event = require('events')
+EventEmitter = new event.EventEmitter()
 request = require "request"
 https = require('https')
 
@@ -17,7 +19,7 @@ db = Mongoose.createConnection DB
 User = UserModel db
 Account = AccountModel db
 
-EventController = require('./control/EventController')()
+EventController = require('./control/EventController')(EventEmitter)
 DeliveryController = require('./control/DeliveryController')()
 
 UserControl = require('./control/users')
