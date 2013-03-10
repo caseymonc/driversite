@@ -34,13 +34,14 @@
 	float: left;
 	width: 260px;
 	padding: 10px;
+	margin: 0px;
 }
 
 #driverImage h4{
 	float: left;
 	width: 260px;
 	padding: 10px;
-
+	margin: 0px;
 }
 
 #info{
