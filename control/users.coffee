@@ -13,7 +13,7 @@ module.exports = (User, Account, EventController) =>
 				json: true
 			request options, (error, response, body)=>
 				console.log JSON.stringify body
-				return res.render 'profile', {checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
+				return res.render 'profile', {phone: req.session.user.phone, checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
 
 	registerEventUrl: (req, res)=>
 		url = "http://localhost:3080/event"
