@@ -26,12 +26,13 @@
    -webkit-box-shadow: inset 0 0 10px #000000;
    box-shadow:         inset 0 0 10px #000000;
 
-   float left;
+   float: left !important;
 
 }
 
 #driverImage h3{
-	float left;
+	float: left;
+
 }
 
 #info{
