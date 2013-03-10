@@ -9,7 +9,8 @@ module.exports = (db) ->
 		flowerShopId: String,
 		address: String,
 		pickupTime: Date,
-		deliveryTime: Date
+		deliveryTime: Date,
+		uri: String
 	}, { collection : 'driver_deliveries' })
 
 	DeliverySchema.statics.get = (flowerShopId, cb)->

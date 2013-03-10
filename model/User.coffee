@@ -8,7 +8,8 @@ module.exports = (db) ->
     username: String,
     password: String,
     foursquareId: String,
-    flowershopId: String
+    flowershopId: String,
+    phone: String
   }, { collection : 'driver_users' })
 
 
@@ -29,6 +30,7 @@ module.exports = (db) ->
           return cb(null, user ,true)
       else
         cb null, user, false
+
 
   # Get a user by id
   UserSchema.statics.findOrCreate = (data, cb) ->

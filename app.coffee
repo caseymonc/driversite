@@ -5,6 +5,7 @@ Mongoose = require 'mongoose'
 
 UserModel = require './model/User'
 AccountModel = require './model/Account'
+DeliveryModel = require './model/Account'
 passport = require 'passport'
 LocalStrategy = require('passport-local').Strategy
 FoursquareStrategy = require('passport-foursquare').Strategy
@@ -18,16 +19,18 @@ DB = process.env.DB || 'mongodb://localhost:27017/shop'
 db = Mongoose.createConnection DB
 User = UserModel db
 Account = AccountModel db
+Delivery = DeliveryModel db
 
 EventController = require('./control/EventController')(EventEmitter)
-DeliveryController = require('./control/DeliveryController')()
+DeliveryController = require('./control/DeliveryController')(Delivery)
 
 UserControl = require('./control/users')
 UserController = new UserControl User, Account, EventController
 
 mongomate = require('mongomate')('mongodb://localhost')
 
-
+#TwilioClient = require('twilio').Client
+#twilio = new TwilioClient "ACd937e58e6b95e59900c72cd55b84c51d", "914fd9402ee8653240e4ac8c2445dbec", "https://ec2-184-72-144-249.compute-1.amazonaws.com"
 
 DEV = false
 
@@ -108,6 +111,9 @@ exports.createServer = ->
 	app.post "/login", (req, res)->
 		return UserController.login req, res
 
+	app.post "/create/driver", (req, res)->
+		return UserController.create req, res
+
 	app.get "/login/foursquare", (req, res) ->
 		return UserController.loginFoursquare req, res
 
@@ -124,9 +130,12 @@ exports.createServer = ->
 		return res.send "OK"
 
 	EventEmitter.on "rfq:delivery_ready", (body)=>
-		DeliveryController.addDelivery body
+		DeliveryController.emitDelivery body
 
 	app.get '/auth/foursquare', passport.authenticate('foursquare')
+
+
+	app.post '/twilio', (req, res)=>
 
 
 	app.get '/auth/foursquare/callback', passport.authenticate('foursquare', { failureRedirect: '/' }), (req, res) ->

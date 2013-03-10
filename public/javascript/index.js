@@ -1,15 +1,15 @@
 var onLoad = function(){
-	var loginFlowershop = $( "#loginFlowershop" );
-	var createFlowershop = $( "#createFlowershop" );
+	var login = $( "#login" );
+	var create = $( "#create" );
 
 	$("#swapLoginButton").on("click", function(event){
-		loginFlowershop.show();
-		createFlowershop.hide();
+		login.show();
+		create.hide();
 	});
 
 	$("#swapCreateButton").on("click", function(event){
-		loginFlowershop.hide();
-		createFlowershop.show();
+		login.hide();
+		create.show();
 	});
 
 }

@@ -20,22 +20,32 @@ module.exports = (User, Account, EventController) =>
 		data = {uri: req.protocol + "://" + req.get('host') + "/users/" + req.session.user._id + "/event"}
 		EventController.sendExternalEvent url, "rfq", "driver_ready", data
 
-	login: (req, res)=>
-		console.log 'Endpoint: Login'
-		return res.redirect "/ 1" unless (req.body.username? and req.body.password)
-		data = {username: req.body.username, password: req.body.password}
+	create: (req, res)=>
+		return res.redirect "/" unless (req.body.username? and req.body.password)
+		data = {username: req.body.username, password: req.body.password, phone: req.body.phone}
 		User.findOrCreate data, (err, user, created)=>
-			return res.redirect '/ 2' if err? or not user? or user.password != req.body.password
+			return res.redirect '/' if err? or not user? or user.password != req.body.password
 			req.session.user = user
 			if created or not user.foursquareId?
-				console.log "Redirect / fsq 1"
 				return res.redirect '/login/foursquare'
 			Account.findById user.foursquareId, (err, account)=>
 				if err? or not account?
-					console.log "Redirect / fsq 2"
 					return res.redirect '/login/foursquare' 
 				req.session.account = account
-				console.log "Redirect /profile/" + account.foursquareId
+				return res.redirect '/profile/' + account.foursquareId
+
+	login: (req, res)=>
+		return res.redirect "/" unless (req.body.username? and req.body.password)
+		data = {username: req.body.username}
+		User.findOne data, (err, user)=>
+			return res.redirect '/' if err? or not user? or user.password != req.body.password
+			req.session.user = user
+			if created or not user.foursquareId?
+				return res.redirect '/login/foursquare'
+			Account.findById user.foursquareId, (err, account)=>
+				if err? or not account?
+					return res.redirect '/login/foursquare' 
+				req.session.account = account
 				return res.redirect '/profile/' + account.foursquareId
 
 	renderProfileList: (req, res)=>

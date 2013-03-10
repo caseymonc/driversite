@@ -4,14 +4,14 @@
 
 }
 
-#login{
+.center{
 	height: 300px;
 	width: 400px;
 	margin: auto;
 	margin-top: 10%;
 }
 
-#login input{
+.center input{
 	font-size: 15pt;
 }
 

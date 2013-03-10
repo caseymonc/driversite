@@ -2,19 +2,29 @@ extends layout
 
 append scripts
 	link(rel="stylesheet", href="/login.css")
+	script(src='/javascript/index.js')
 
 block header
 	h1 #{title}
-	a(href="/profiles") Users
 
 block content
 	#main
-		#login
+		#login(class="center")
 			form(name="loginForm", action="/login", method="post", data-ajax="false")
-				input(type="text", name="username", id="username", value="", placeholder="Username")
+				input(type="email", name="username", id="username", value="", placeholder="Username")
 				input(type="password", name="password", id="password", value="", placeholder="Password")
-				#buttonWrapper
-					input(type="submit", name="loginButton", id="loginButton", value="", value="Login")
+				.buttonWrapper
+					input(type="submit", name="loginButton", id="loginButton", value="", value="Login", data-theme="b")
+					input(type="button", name="swapCreateButton", id="swapCreateButton", value="", value="Create an Account")
+
+		#create(style="display:none", class="center")
+			form(name="createForm", action="/create/driver", method="post", data-ajax="false")
+				input(type="email", name="username", id="username", value="", placeholder="Username")
+				input(type="password", name="password", id="password", value="", placeholder="Password")
+				input(type="tel", name="phone", id="phone", value="", placeholder="Phone Number")
+				.buttonWrapper
+					input(type="submit", name="loginButton", id="loginButton", value="", value="Create an Account", data-theme="b")
+					input(type="button", name="swapLoginButton", id="swapLoginButton", value="", value="Login")
 
 
 block footer
