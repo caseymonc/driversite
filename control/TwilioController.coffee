@@ -4,9 +4,11 @@ class TwilioController
 	constructor: (@User, @Account, @Twilio)->
 
 	init: ()=>
-		@User.find {}, (err, users)=>
-			for user in users
-				@addTwilioListeners user
+		phone = @Twilio.getPhoneNumber('+18019214403')
+		phone.setup ()=>
+			phone.on 'incomingSms', (reqParams, res)=>
+				console.log('Received incoming SMS with text: ' + reqParams.Body);
+				console.log('From: ' + reqParams.From);
 
 	sendSMS: ()=>
 		options =
