@@ -40,7 +40,7 @@ module.exports = (User, Account, EventController) =>
 		User.findOne data, (err, user)=>
 			return res.redirect '/' if err? or not user? or user.password != req.body.password
 			req.session.user = user
-			if created or not user.foursquareId?
+			if not user.foursquareId?
 				return res.redirect '/login/foursquare'
 			Account.findById user.foursquareId, (err, account)=>
 				if err? or not account?
@@ -66,7 +66,7 @@ module.exports = (User, Account, EventController) =>
 	loginFoursquare: (req, res)=>
 		console.log 'Endpoint: Login Foursquare'
 		ensureUserAuthenticated req, res, ()=>
-			return res.redirect '/app' if req.session?.account?
+			return res.redirect '/profile/' + req.user.foursquareId if req.session?.account?
 			return res.render('login_foursquare', {title: "Foursquare Login"})
 
 	authCallback: (req, res)=>
@@ -74,7 +74,7 @@ module.exports = (User, Account, EventController) =>
 		req.session.account = req.user
 		req.session.user.foursquareId = req.user.foursquareId
 		User.addAccount req.user.foursquareId, req.session.user.username, ()=>
-			return res.redirect '/app'
+			return res.redirect '/profile/' + req.user.foursquareId
 
 ensureDriverAuthenticated = (req, res, next)->
 	ensureUserAuthenticated req, res, ()->
