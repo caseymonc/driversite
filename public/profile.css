@@ -32,15 +32,14 @@
 
 #driverImage h3{
 	float: left;
-	margin-left: 10px;
 	width: 260px;
-
+	padding: 10px;
 }
 
 #driverImage h4{
 	float: left;
-	margin-left: 10px;
 	width: 260px;
+	padding: 10px;
 
 }
 
