@@ -78,11 +78,13 @@ module.exports = (User, Account, EventController) =>
 	updateUserLocation: (req, res)=>
 		#return res.send "OK" if body.type != "checkin"
 		console.log 'Endpoint: updateUserLocation\n' + JSON.stringify req.body
+		user = JSON.parse req.body.user
+		checkin = JSON.parse req.body.checkin
 		options =
-			lon: req.body.venue.location.lng
-			lat: req.body.venue.location.lat
-			foursquareId: req.body.user.id
-			name: req.body.venue.location.address 
+			lon: checkin.venue.location.lng
+			lat: checkin.venue.location.lat
+			foursquareId: checkin.user.id
+			name: checkin.venue.location.address 
 		Account.updateUserLocation options, (err)=>
 			res.send "OK"
 
