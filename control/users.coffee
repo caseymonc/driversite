@@ -76,7 +76,7 @@ module.exports = (User, Account, EventController) =>
 			return res.redirect '/profile/' + req.user.foursquareId
 
 	updateUserLocation: (req, res)=>
-		return res.send "OK" if body.type != "checkin"
+		#return res.send "OK" if body.type != "checkin"
 		console.log 'Endpoint: updateUserLocation'
 		options =
 			lon: body.venue.location.lng
