@@ -79,10 +79,10 @@ module.exports = (User, Account, EventController) =>
 		#return res.send "OK" if body.type != "checkin"
 		console.log 'Endpoint: updateUserLocation'
 		options =
-			lon: body.venue.location.lng
-			lat: body.venue.location.lat
-			foursquareId: body.user.id
-			name: body.venue.location.address 
+			lon: req.body.venue.location.lng
+			lat: req.body.venue.location.lat
+			foursquareId: req.body.user.id
+			name: req.body.venue.location.address 
 		Account.updateUserLocation options, (err)=>
 			res.send "OK"
 
