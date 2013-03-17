@@ -6,7 +6,7 @@ module.exports = (Delivery, Account, User, EventController)=>
 
 				radius = body.radius
 
-				if radius > miles
+				if radius < miles
 					#Ask for bid
 					console.log "Too far away, sending text.  Distance: " + miles + " Radius: " + radius
 					return
