@@ -77,7 +77,7 @@ module.exports = (User, Account, EventController) =>
 
 	updateUserLocation: (req, res)=>
 		#return res.send "OK" if body.type != "checkin"
-		console.log 'Endpoint: updateUserLocation'
+		console.log 'Endpoint: updateUserLocation\n' + req.body
 		options =
 			lon: req.body.venue.location.lng
 			lat: req.body.venue.location.lat
