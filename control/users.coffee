@@ -84,7 +84,7 @@ module.exports = (User, Account, EventController) =>
 			lon: checkin.venue.location.lng
 			lat: checkin.venue.location.lat
 			foursquareId: checkin.user.id
-			name: checkin.venue.location.address 
+			name: checkin.venue.name 
 		Account.updateUserLocation options, (err)=>
 			res.send "OK"
 
