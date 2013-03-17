@@ -12,7 +12,7 @@ module.exports = (Delivery, Account, User, EventController)=>
 					return
 				else
 					#Auto Bid
-					console.log "Sending bid_available"
+					console.log "Sending bid_available.  Distance: " + miles + " Radius: " + radius
 					data = {}
 					data.bid = 5.50
 					data.uri = "http://localhost/users" + body.user_id + "/event"
