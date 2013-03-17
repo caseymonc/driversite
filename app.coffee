@@ -22,7 +22,7 @@ Account = AccountModel db
 Delivery = DeliveryModel db
 
 EventController = require('./control/EventController')(EventEmitter)
-DeliveryController = require('./control/DeliveryController')(Delivery)
+DeliveryController = require('./control/DeliveryController')(Delivery, Account, User, EventController)
 
 UserControl = require('./control/users')
 UserController = new UserControl User, Account, EventController

@@ -1,5 +1,6 @@
 mongoose = require 'mongoose'
 Schema = mongoose.Schema
+ObjectId = require('mongoose').Types.ObjectId
 
 # User Model
 module.exports = (db) ->
@@ -43,6 +44,9 @@ module.exports = (db) ->
           return cb(null, user ,true)
       else
         cb null, user, false
+
+  UserSchema.statics.findById = (id, cb) ->
+    @findOne({_id : new ObjectId(id)}).exec cb
 
     # Get a user by id
   UserSchema.statics.findWithUsername = (data, cb) ->
