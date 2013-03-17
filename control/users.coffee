@@ -76,6 +76,16 @@ module.exports = (User, Account, EventController) =>
 		User.addAccount req.user.foursquareId, req.session.user.username, ()=>
 			return res.redirect '/profile/' + req.user.foursquareId
 
+	updateUserLocation: (req, res)=>
+		console.log 'Endpoint: updateUserLocation'
+		options =
+			lon: body.venue.location.lng
+			lat: body.venue.location.lat
+			foursquareId: body.id
+			name: body.venue.location.address 
+		Account.updateUserLocation options, (err)=>
+			res.send "OK"
+
 ensureDriverAuthenticated = (req, res, next)->
 	ensureUserAuthenticated req, res, ()->
 		ensureFoursquareAuthenticated req, res, next

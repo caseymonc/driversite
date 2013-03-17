@@ -32,6 +32,7 @@ module.exports = (db) ->
         cb null, user, false
 
 
+
   # Get a user by id
   UserSchema.statics.findOrCreate = (data, cb) ->
     @findOne({"username": data.username}).exec (err, user) ->

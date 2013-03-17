@@ -13,7 +13,9 @@ module.exports = (db) ->
     token: String,
     photo: String,
     homeCity: String,
-    uri: String
+    uri: String,
+    pos: {type: [Number], index: '2d'},
+    locationName: String
   }, { collection : 'driver_accounts' })
 
 
@@ -22,6 +24,9 @@ module.exports = (db) ->
 
   AccountSchema.statics.getAllAccounts = (cb) ->
     @find().exec cb
+
+  AccountSchema.statics.updateUserLocation = (options, cb)->
+    @update {foursquareId : options.foursquareId}, {pos : [options.lon, options.lat], posName : options.name}, cb
 
   # Get All Users for a group
   AccountSchema.statics.findById = (id, cb) ->
