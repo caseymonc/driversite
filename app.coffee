@@ -143,7 +143,8 @@ exports.createServer = ->
 	app.post '/twilio', (req, res)=>
 
 
-	app.post '/foursquare/event', 
+	app.post '/foursquare/event', (req, res)=>
+		UserController.updateUserLocation req, res
 
 	app.get '/auth/foursquare/callback', passport.authenticate('foursquare', { failureRedirect: '/' }), (req, res) ->
 		return UserController.authCallback req, res
