@@ -12,7 +12,6 @@ module.exports = (User, Account, EventController) =>
 				url: 'https://api.foursquare.com' + '/v2/users/'+req.params.user_id+'/checkins?oauth_token='+user.token+'&limit=' + limit
 				json: true
 			request options, (error, response, body)=>
-				console.log JSON.stringify body
 				return res.render 'profile', {phone: req.session.user.phone, checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
 
 	registerEventUrl: (req, res)=>
@@ -77,11 +76,12 @@ module.exports = (User, Account, EventController) =>
 			return res.redirect '/profile/' + req.user.foursquareId
 
 	updateUserLocation: (req, res)=>
+		return res.send "OK" if body.type != "checkin"
 		console.log 'Endpoint: updateUserLocation'
 		options =
 			lon: body.venue.location.lng
 			lat: body.venue.location.lat
-			foursquareId: body.id
+			foursquareId: body.user.id
 			name: body.venue.location.address 
 		Account.updateUserLocation options, (err)=>
 			res.send "OK"
