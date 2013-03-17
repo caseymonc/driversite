@@ -8,22 +8,23 @@ module.exports = (Delivery, Account, User, EventController)=>
 
 				if radius > miles
 					#Ask for bid
+					console.log "Too far away, sending text.  Distance: " + miles + " Radius: " + radius
 					return
 				else
 					#Auto Bid
+					console.log "Sending bid_available"
 					data = {}
 					data.bid = 5.50
 					data.uri = "http://localhost/users" + body.user_id + "/event"
 
-
 					EventController.sendExternalEvent body.uri, "rfq", "bid_available", data
-
-					account.bid
 
 
 
 distanceMiles = (lat1, lon1, lat2, lon2)=>
 	earthRadius = 6371;
+
+	decimals = 5;
 
 	dLat = (lat1 - lat2) * Math.PI / 180
 	dLon = (lon1 - lon2) * Math.PI / 180
