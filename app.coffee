@@ -143,7 +143,7 @@ exports.createServer = ->
 
 	app.post '/twilio', (req, res)=>
 		console.log "SMS Received: " + JSON.stringify req.body
-		TwilioController.receivedSMS req, res
+		res.send "OK"
 
 
 	app.post '/users/:foursquareId/bid', (req, res)=>
