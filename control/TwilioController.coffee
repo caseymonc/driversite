@@ -32,6 +32,7 @@ class TwilioController
 				@EventController.sendExternalEvent user.lastDelivery.uri, "rfq", "bid_available", data
 
 	sendSMS: (number, message)=>
-		@phone.sendSms '+18019214403', number, message
+		@phone.sendSms '+18019214403', number, message, ()=>
+			return
 
 module.exports = TwilioController
