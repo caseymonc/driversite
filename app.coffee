@@ -22,7 +22,7 @@ Account = AccountModel db
 Delivery = DeliveryModel db
 
 EventController = require('./control/EventController')(EventEmitter)
-DeliveryController = require('./control/DeliveryController')(Delivery, Account, User, EventController)
+
 
 UserControl = require('./control/users')
 UserController = new UserControl User, Account, EventController
@@ -33,7 +33,7 @@ TwilioModel = require('twilio').Client
 TwilioClient = new TwilioModel('AC3aad8128a04ead0544baf2870e36b7ac', '53d12dbdf59880bb77d68aa2390fb186', 'ec2-184-72-144-249.compute-1.amazonaws.com')
 TwilioControl = require('./control/TwilioController')
 TwilioController = new TwilioControl(User, Account, TwilioClient, EventController)
-
+DeliveryController = require('./control/DeliveryController')(Delivery, Account, User, EventController, TwilioController)
 
 mongomate = require('mongomate')('mongodb://localhost')
 
