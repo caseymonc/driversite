@@ -27,11 +27,12 @@ DeliveryController = require('./control/DeliveryController')(Delivery, Account, 
 UserControl = require('./control/users')
 UserController = new UserControl User, Account, EventController
 
-#TwilioClient = require('tokenwilio').Client
-#Twilio = new TwilioClient "ACd937e58e6b95e59900c72cd55b84c51d", "914fd9402ee8653240e4ac8c2445dbec", "https://ec2-184-72-144-249.compute-1.amazonaws.com"
-#console.log JSON.stringify Twilio
-#TwilioControl = require('./control/TwilioController')
-#TwilioController = new TwilioControl(User, Account, Twilio)
+TwilioModel = require('twilio').Client
+#TwimlModel = require('twilio').Twiml
+#sys = require 'sys'
+TwilioClient = new TwilioModel('AC3aad8128a04ead0544baf2870e36b7ac', '53d12dbdf59880bb77d68aa2390fb186', 'ec2-184-72-144-249.compute-1.amazonaws.com')
+TwilioControl = require('./control/TwilioController')
+TwilioController = new TwilioControl(User, Account, TwilioClient)
 
 
 mongomate = require('mongomate')('mongodb://localhost')
@@ -158,7 +159,7 @@ exports.createServer = ->
 if module == require.main
 	app = exports.createServer()
 	app.listen 80
-	#TwilioController.init()
+	TwilioController.init()
 
 	
 
