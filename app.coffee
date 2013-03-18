@@ -143,6 +143,9 @@ exports.createServer = ->
 	app.post '/twilio', (req, res)=>
 
 
+	app.post '/users/:foursquareId/bid', (req, res)=>
+		UserController.updateBid req, res
+
 	app.post '/foursquare/event', (req, res)=>
 		UserController.updateUserLocation req, res
 

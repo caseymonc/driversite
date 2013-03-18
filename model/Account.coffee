@@ -29,6 +29,9 @@ module.exports = (db) ->
   AccountSchema.statics.updateUserLocation = (options, cb)->
     @update {foursquareId : options.foursquareId}, {pos : [options.lon, options.lat], posName : options.name}, cb
 
+  AccountSchema.statics.updateUserBid = (bid, foursquareId, cb)->
+    @update {foursquareId : foursquareId}, {bid : bid}, cb
+
   # Get All Users for a group
   AccountSchema.statics.findById = (id, cb) ->
     @findOne({"foursquareId": id}).exec cb

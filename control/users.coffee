@@ -75,6 +75,11 @@ module.exports = (User, Account, EventController) =>
 		User.addAccount req.user.foursquareId, req.session.user.username, ()=>
 			return res.redirect '/profile/' + req.user.foursquareId
 
+	updateBid: (req, res)=>
+		Account.updateUserBid req.body.bid, req.params.foursquareId (err)=>
+			res.send "OK"
+
+
 	updateUserLocation: (req, res)=>
 		user = JSON.parse req.body.user
 		checkin = JSON.parse req.body.checkin
