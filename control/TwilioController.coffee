@@ -32,7 +32,7 @@ class TwilioController
 				@EventController.sendExternalEvent user.lastDelivery.uri, "rfq", "bid_available", data
 
 	sendSMS: (number, message)=>
-		console.log number
+		console.log message
 		@phone.sendSms number, message, '+18019214403', error, success
 
 error = (data)=>
