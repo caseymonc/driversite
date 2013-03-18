@@ -17,6 +17,10 @@
 	width: 200px;
 }
 
+#bid.form.input{
+	float: right
+}
+
 #driverImage div{
 	margin-left: 10px;
 	margin-top: 10px;
