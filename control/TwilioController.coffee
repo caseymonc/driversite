@@ -17,12 +17,12 @@ class TwilioController
 		return res.send "OK" if text != "bid anyway"
 		len = phone.length
 		phone = phone.substring(len - 10) if phone.length > 10
-		User.findByNumber phone, (err, user)=>
+		@User.findByNumber phone, (err, user)=>
 			return res.send err if err?
 			return res.send "Not Found" if not user?
 			return res.send "No Delivery" if not user?.lastDelivery?
 			
-			Account.findById user.foursquareId, (err, account)=>
+			@Account.findById user.foursquareId, (err, account)=>
 				data = {}
 				data.bid = account.bid
 				data.driverUri = "http://localhost/users/" + account.foursquareId + "/event"
