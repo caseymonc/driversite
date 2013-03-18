@@ -15,6 +15,7 @@ class TwilioController
 	receivedSMS: (req, res)=>
 		phone = req.body.From
 		text = req.body.Body
+		console.log "OK" if text != "bid anyway"
 		return res.send "OK" if text != "bid anyway"
 		len = phone.length
 		phone = phone.substring(len - 10) if phone.length > 10
