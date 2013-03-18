@@ -31,6 +31,10 @@
 
 }
 
+#bid{
+	padding: 10px;
+}
+
 #driverImage h3{
 	float: left;
 	width: 260px;
