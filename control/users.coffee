@@ -59,7 +59,10 @@ module.exports = (User, Account, EventController) =>
 		console.log 'Endpoint: Logout'
 		if req.session?.user?
 			delete req.session.user
-		req.session.destroy()
+
+		if req.session?.account?
+			delete req.session.account
+		#req.session.destroy()
 		return res.redirect '/login'
 
 	loginFoursquare: (req, res)=>
