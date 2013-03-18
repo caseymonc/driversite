@@ -8,14 +8,12 @@ class TwilioController
 		@phone = @Twilio.getPhoneNumber('+18019214403')
 		@phone.setup ()=>
 			@phone.on 'incomingSms', (reqParams, res)=>
-				console.log('Received incoming SMS with text: ' + reqParams.Body);
-				console.log('From: ' + reqParams.From);
 				@receivedSMS reqParams, res
 				return res.send "OK"
 
 	receivedSMS: (req, res)=>
 		phone = req.From
-		text = req.Body
+		text = req.Body.body.Body
 		return console.log res.send "Text: " + text if text != "bid anyway"
 		len = phone.length
 		phone = phone.substring(len - 10) if phone.length > 10
