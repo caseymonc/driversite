@@ -32,9 +32,6 @@ class TwilioController
 				@EventController.sendExternalEvent user.lastDelivery.uri, "rfq", "bid_available", data
 
 	sendSMS: (number, message)=>
-		@phone.sendSms number, message, null, (sms) =>
-			sms.on 'processed', (reqParams, response)=>
-				console.log 'Message processed, request params follow'
-				console.log reqParams
+		@phone.sendSms '+18019214403', number, message
 
 module.exports = TwilioController
