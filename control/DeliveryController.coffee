@@ -9,7 +9,7 @@ module.exports = (Delivery, Account, User, EventController, TwilioController)=>
 				if radius < miles
 					#Ask for bid
 					console.log "Too far away, sending text.  Distance: " + miles + " Radius: " + radius
-					TwilioController.sendSMS user.phone
+					TwilioController.sendSMS(user.phone, "Delivery Available")
 					User.update {_id: user._id}, {lastDelivery : {delivery_id : body.delivery_id, uri : body.uri}}, (err)=>
 						console.log "Updated User"
 					return
