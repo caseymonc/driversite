@@ -33,7 +33,7 @@ class TwilioController
 
 	sendSMS: (number, message)=>
 		console.log number
-		@phone.sendSms '+18019214403', number, message, error, success
+		@phone.sendSms number, '+18019214403', message, error, success
 
 error = (data)=>
 	console.log data
