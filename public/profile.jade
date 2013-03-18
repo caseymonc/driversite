@@ -50,5 +50,5 @@ block footer
 	a(href="/users/#{user_id}/register/uri", data-transition="slide", style="margin:4px") Available For Deliveries
 	#bid
 		form(name="bidForm", action="/users/#{user.foursquareId}/bid", method="post", data-ajax="false")
-			input(type="number", name="bid", id="bid", value="", placeholder="")
+			input(type="number", name="bid", id="bid", value="", placeholder="0.0")
 			input(type="submit", name="submit", id="submit", value="", value="Change Bid", data-theme="b")
