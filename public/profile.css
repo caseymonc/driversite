@@ -14,11 +14,12 @@
 }
 
 #bid{
-	width: 200px;
+	width: 400px;
 }
 
 #bid.form.input{
-	float: right
+	float: right;
+	width: 180px;
 }
 
 #driverImage div{
