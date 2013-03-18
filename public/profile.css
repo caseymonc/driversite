@@ -10,17 +10,9 @@
 
 #driverImage{
 	width: 100%;
-	height: 120px;
+	height: 220px;
 }
 
-#bid{
-	width: 400px;
-}
-
-#bid form input{
-	float: right;
-	width: 180px;
-}
 
 #driverImage div{
 	margin-left: 10px;
