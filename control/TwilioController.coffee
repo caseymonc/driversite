@@ -25,8 +25,8 @@ class TwilioController
 			return res.send "Not Found" if not user?
 			console.log "No Delivery" if not user?.lastDelivery?
 			return res.send "No Delivery" if not user?.lastDelivery?
-			console.log "No Delivery ID" if not user?.lastDelivery?.delivery_id?
-			return res.send "No Delivery ID" if not user?.lastDelivery?.delivery_id?
+			#console.log "No Delivery ID" if not user?.lastDelivery?.delivery_id?
+			#return res.send "No Delivery ID" if not user?.lastDelivery?.delivery_id?
 			console.log "No Delivery URI" if not user?.lastDelivery?.uri?
 			return res.send "No Delivery URI" if not user?.lastDelivery?.uri?
 			
