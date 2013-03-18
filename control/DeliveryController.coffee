@@ -1,4 +1,4 @@
-module.exports = (Delivery, Account, User, EventController)=>
+module.exports = (Delivery, Account, User, EventController, TwilioController)=>
 	emitDelivery: (body)=>
 		User.findById body.user_id, (err, user)=>
 			Account.findById user.foursquareId, (err, account)=>
@@ -9,6 +9,9 @@ module.exports = (Delivery, Account, User, EventController)=>
 				if radius < miles
 					#Ask for bid
 					console.log "Too far away, sending text.  Distance: " + miles + " Radius: " + radius
+					TwilioController.sendSMS user.phone
+					User.update {_id: user._id}, {lastDelivery : {delivery_id : body.delivery_id, uri : body.uri}}, (err)=>
+						console.log "Updated User"
 					return
 				else
 					#Auto Bid

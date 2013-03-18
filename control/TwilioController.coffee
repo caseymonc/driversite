@@ -3,10 +3,11 @@ request = require "request"
 class TwilioController
 	constructor: (@User, @Account, @Twilio, @EventController)->
 
+
 	init: ()=>
-		phone = @Twilio.getPhoneNumber('+18019214403')
-		phone.setup ()=>
-			phone.on 'incomingSms', (reqParams, res)=>
+		@phone = @Twilio.getPhoneNumber('+18019214403')
+		@phone.setup ()=>
+			@phone.on 'incomingSms', (reqParams, res)=>
 				console.log('Received incoming SMS with text: ' + reqParams.Body);
 				console.log('From: ' + reqParams.From);
 
@@ -30,16 +31,10 @@ class TwilioController
 
 				@EventController.sendExternalEvent user.lastDelivery.uri, "rfq", "bid_available", data
 
-	sendSMS: ()=>
-		options =
-			url: "https://api.twilio.com/2010-04-01/Accounts/AC3aad8128a04ead0544baf2870e36b7ac/SMS/Messages.json"
-			json: data
-
-	addTwilioListeners: (user)=>
-		phone = @Twilio.getPhoneNumber('+1' + user.phone)
-		phone.setup ()=>
-			phone.on 'incomingSms', (reqParams, res)=>
-				console.log('Received incoming SMS with text: ' + reqParams.Body);
-				console.log('From: ' + reqParams.From);
+	sendSMS: (number, message)=>
+		@phone.sendSms number, message, null, (sms) =>
+			sms.on 'processed', (reqParams, response)=>
+				console.log 'Message processed, request params follow'
+				console.log reqParams
 
 module.exports = TwilioController
