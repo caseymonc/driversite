@@ -8,21 +8,22 @@ class TwilioController
 		@phone = @Twilio.getPhoneNumber('+18019214403')
 		@phone.setup ()=>
 			@phone.on 'incomingSms', (reqParams, res)=>
+				console.log('Received incoming SMS with text: ' + reqParams.Body);
+				console.log('From: ' + reqParams.From);
 				@receivedSMS reqParams, res
-				return res.send "OK"
 
 	receivedSMS: (req, res)=>
-		phone = req.From
-		text = req.Body
-		return console.log res.send "Text: " + text if text != "bid anyway"
+		phone = req.body.From
+		text = req.body.Body
+		return res.send "OK" if text != "bid anyway"
 		len = phone.length
 		phone = phone.substring(len - 10) if phone.length > 10
 		@User.findByNumber phone, (err, user)=>
-			return console.log err if err?
-			return console.log "Not Found" if not user?
-			return console.log "No Delivery" if not user?.lastDelivery?
-			return console.log "No Delivery ID" if not user?.lastDelivery?.delivery_id?
-			return console.log "No Delivery URI" if not user?.lastDelivery?.uri?
+			return res.send err if err?
+			return res.send "Not Found" if not user?
+			return res.send "No Delivery" if not user?.lastDelivery?
+			return res.send "No Delivery ID" if not user?.lastDelivery?.delivery_id?
+			return res.send "No Delivery URI" if not user?.lastDelivery?.uri?
 			
 			@Account.findById user.foursquareId, (err, account)=>
 				data = {}
