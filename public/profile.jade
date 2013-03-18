@@ -33,7 +33,7 @@ block content
 				h4 #{phone}
 				#bidDiv
 					form(name="bidForm", action="/users/#{user.foursquareId}/bid", method="post", data-ajax="false")
-						input(type="number", name="bid", id="bid", value="", placeholder="0.0")
+						input(type="number", name="bid", id="bid", value="#{user.bid}")
 						input(type="submit", name="submit", id="submit", value="", value="Change Bid", data-theme="b")
 
 			#checkin_list
