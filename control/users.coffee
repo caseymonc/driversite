@@ -77,7 +77,7 @@ module.exports = (User, Account, EventController) =>
 
 	updateBid: (req, res)=>
 		Account.updateUserBid req.body.bid, req.params.foursquareId, (err)=>
-			res.redirect '/profile/' + req.user.foursquareId
+			res.redirect '/profile/' + req.params.foursquareId
 
 
 	updateUserLocation: (req, res)=>
