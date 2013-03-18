@@ -15,7 +15,8 @@ module.exports = (db) ->
     homeCity: String,
     uri: String,
     pos: {type: [Number], index: '2d'},
-    posName: String
+    posName: String,
+    bid: {type: Number, default: 5}
   }, { collection : 'driver_accounts' })
 
 

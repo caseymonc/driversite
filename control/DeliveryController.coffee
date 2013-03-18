@@ -14,7 +14,7 @@ module.exports = (Delivery, Account, User, EventController)=>
 					#Auto Bid
 					console.log "Sending bid_available.  Distance: " + miles + " Radius: " + radius
 					data = {}
-					data.bid = 5.50
+					data.bid = account.bid
 					data.driverUri = "http://localhost/users/" + body.user_id + "/event"
 					data.delivery_id = body.delivery_id
 					data.driverName = account.name.givenName + " " + account.name.familyName
