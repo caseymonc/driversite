@@ -142,7 +142,7 @@ exports.createServer = ->
 
 
 	app.post '/twilio', (req, res)=>
-		console.log "SMS Received"
+		console.log "SMS Received: " + req.body
 		res.send "OK"
 
 
