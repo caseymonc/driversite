@@ -11,8 +11,8 @@ class TwilioController
 				console.log('From: ' + reqParams.From);
 
 	receivedSMS: (req, res)=>
-		phone = req.body.From
-		text = req.body.Body
+		#phone = req.body.From
+		#text = req.body.Body
 		return res.send "OK" if text not "bid anyway"
 		console.log "Sent Bid Anyway: " + phone
 
