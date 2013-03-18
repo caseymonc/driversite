@@ -142,6 +142,8 @@ exports.createServer = ->
 
 
 	app.post '/twilio', (req, res)=>
+		console.log "SMS Received"
+		res.send "OK"
 
 
 	app.post '/users/:foursquareId/bid', (req, res)=>
