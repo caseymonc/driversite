@@ -15,15 +15,19 @@ class TwilioController
 	receivedSMS: (req, res)=>
 		phone = req.body.From
 		text = req.body.Body
-		console.log "OK" if text != "bid anyway"
 		return res.send "OK" if text != "bid anyway"
 		len = phone.length
 		phone = phone.substring(len - 10) if phone.length > 10
 		@User.findByNumber phone, (err, user)=>
+			console.log "Err" if err?
 			return res.send err if err?
+			console.log "Not Found" if not user?
 			return res.send "Not Found" if not user?
+			console.log "No Delivery" if not user?.lastDelivery?
 			return res.send "No Delivery" if not user?.lastDelivery?
+			console.log "No Delivery ID" if not user?.lastDelivery?.delivery_id?
 			return res.send "No Delivery ID" if not user?.lastDelivery?.delivery_id?
+			console.log "No Delivery URI" if not user?.lastDelivery?.uri?
 			return res.send "No Delivery URI" if not user?.lastDelivery?.uri?
 			
 			@Account.findById user.foursquareId, (err, account)=>
