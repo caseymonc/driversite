@@ -89,7 +89,7 @@ module.exports = (User, Account, EventController) =>
 			foursquareId: checkin.user.id
 			name: checkin.venue.name 
 		Account.updateUserLocation options, (err)=>
-			res.send "OK"
+			res.redirect '/profile/' + req.user.foursquareId
 
 ensureDriverAuthenticated = (req, res, next)->
 	ensureUserAuthenticated req, res, ()->
