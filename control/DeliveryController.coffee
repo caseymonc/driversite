@@ -15,7 +15,9 @@ module.exports = (Delivery, Account, User, EventController)=>
 					console.log "Sending bid_available.  Distance: " + miles + " Radius: " + radius
 					data = {}
 					data.bid = 5.50
-					data.uri = "http://localhost/users" + body.user_id + "/event"
+					data.driverUri = "http://localhost/users/" + body.user_id + "/event"
+					data.delivery_id = body.delivery_id
+					data.driverName = account.name.givenName + " " + account.name.familyName
 
 					EventController.sendExternalEvent body.uri, "rfq", "bid_available", data
 
