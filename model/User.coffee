@@ -10,7 +10,8 @@ module.exports = (db) ->
     password: String,
     foursquareId: String,
     flowershopId: String,
-    phone: String
+    phone: String,
+    lastDelivery: {delivery_id : String, uri : String}
   }, { collection : 'driver_users' })
 
 
@@ -47,6 +48,9 @@ module.exports = (db) ->
 
   UserSchema.statics.findById = (id, cb) ->
     @findOne({_id : new ObjectId(id)}).exec cb
+
+  UserSchema.statics.findByNumber = (number, cb) ->
+    @findOne({phone : number).exec cb
 
     # Get a user by id
   UserSchema.statics.findWithUsername = (data, cb) ->
