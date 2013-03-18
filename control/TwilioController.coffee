@@ -21,6 +21,8 @@ class TwilioController
 			return res.send err if err?
 			return res.send "Not Found" if not user?
 			return res.send "No Delivery" if not user?.lastDelivery?
+			return res.send "No Delivery ID" if not user?.lastDelivery?.delivery_id?
+			return res.send "No Delivery URI" if not user?.lastDelivery?.uri?
 			
 			@Account.findById user.foursquareId, (err, account)=>
 				data = {}
