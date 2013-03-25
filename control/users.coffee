@@ -15,7 +15,7 @@ module.exports = (User, Account, EventController) =>
 				return res.render 'profile', {phone: req.session.user.phone, checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
 
 	registerEventUrl: (req, res)=>
-		url = "http://localhost:3080/event"
+		url = "http://localhost:3040/event"
 		data = {uri: req.protocol + "://" + req.get('host') + "/users/" + req.session.user._id + "/event"}
 		EventController.sendExternalEvent url, "rfq", "driver_ready", data
 
