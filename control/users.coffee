@@ -12,7 +12,7 @@ module.exports = (User, Account, EventController) =>
 					deliver = use.deliveries
 
 				console.log deliver
-				
+
 				limit = 1
 				if req.session?.account? && req.params.user_id == req.session.account.foursquareId
 					limit = 10
@@ -89,6 +89,14 @@ module.exports = (User, Account, EventController) =>
 	updateBid: (req, res)=>
 		Account.updateUserBid req.body.bid, req.params.foursquareId, (err)=>
 			res.redirect '/profile/' + req.params.foursquareId
+
+	completeDelivery: (req, res)=>
+		url = "http://localhost:3040/event"
+		data = {delivery_id: req.params.delivery_id}
+		EventController.sendExternalEvent url, "delivery", "complete", data
+
+		url = "http://localhost:3080/event"
+		EventController.sendExternalEvent url, "delivery", "complete", data
 
 	bidAwarded: (body)=>
 		bid = body.bids[0]
