@@ -23,6 +23,9 @@ module.exports = (db) ->
 			user.save()
 			cb()
 
+	UserSchema.statics.findByFoursquareId = (foursquareId, cb)->
+		@findOne({"foursquareId" : foursquareId}).exec cb
+
 	UserSchema.statics.findOrCreateWithShop = (data, cb)->
 		@findOne({"username": data.username}).exec (err, user) ->
 			return cb {error: "Database Error"} if err?

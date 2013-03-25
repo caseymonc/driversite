@@ -5,14 +5,19 @@ module.exports = (User, Account, EventController) =>
 	renderProfile: (req, res)=>
 		console.log 'Endpoint: Profile'
 		Account.findById req.params.user_id, (err, user)=>
-			limit = 1
-			if req.session?.account? && req.params.user_id == req.session.account.foursquareId
-				limit = 10
-			options = 
-				url: 'https://api.foursquare.com' + '/v2/users/'+req.params.user_id+'/checkins?oauth_token='+user.token+'&limit=' + limit
-				json: true
-			request options, (error, response, body)=>
-				return res.render 'profile', {phone: req.session.user.phone, checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id}
+			User.findByFoursquareId user.foursquareId, (use_err, use)=>
+				if use_err or not use?.deliveries?
+					deliver = []
+				else
+					deliver = use.deliveries
+				limit = 1
+				if req.session?.account? && req.params.user_id == req.session.account.foursquareId
+					limit = 10
+				options = 
+					url: 'https://api.foursquare.com' + '/v2/users/'+req.params.user_id+'/checkins?oauth_token='+user.token+'&limit=' + limit
+					json: true
+				request options, (error, response, body)=>
+					return res.render 'profile', {phone: req.session.user.phone, checkins: body.response.checkins.items, user: user, title: "Profile", logged_in: limit == 10, user_id: req.params.user_id, deliveries: deliver}
 
 	registerEventUrl: (req, res)=>
 		url = "http://localhost:3040/event"

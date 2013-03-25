@@ -51,9 +51,8 @@ block content
 									h3 #{delivery.address}
 									p Due: #{delivery.due}
 						ul(data-role="listview", data-inset="false")
-							- if user.deliveries
-								each delivery in user.deliveries
-									+deliveryItem(delivery)
+							each delivery in deliveries
+								+deliveryItem(delivery)
 
 block footer
 	a(href="/users/#{user_id}/register/uri", data-transition="slide", style="margin:4px") Available For Deliveries
