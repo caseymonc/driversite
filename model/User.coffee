@@ -35,7 +35,8 @@ module.exports = (db) ->
 				cb null, user, false
 
 	UserSchema.statics.addDelivery = (user_id, delivery, cb)->
-		@findOne({foursquareId: user_id}).exec (err, user)=>
+		user_id = new ObjectId(user_id)
+		@findOne({_id: user_id}).exec (err, user)=>
 			return cb err if err
 			return cb {error : "No User: " + user_id} if not user
 			user.deliveries = [] if not user.deliveries?
