@@ -47,7 +47,7 @@ block content
 					.innerDivider
 			mixin deliveryItem(delivery, user)
 				li(data-icon="check")
-					a(href="/users/#{user.foursquareId}/delivery/#{delivery._id}/complete", rel="external")
+					a(href="/users/#{user.foursquareId}/delivery/#{delivery.delivery_id}/complete", rel="external")
 						h3 #{delivery.address}
 						p Due: #{delivery.due}
 			ul(data-role="listview", data-inset="false")
