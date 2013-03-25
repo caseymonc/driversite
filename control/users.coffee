@@ -16,7 +16,7 @@ module.exports = (User, Account, EventController) =>
 
 	registerEventUrl: (req, res)=>
 		url = "http://localhost:3040/event"
-		data = {uri: req.protocol + "://" + req.get('host') + "/users/" + req.session.user._id + "/event"}
+		data = {"http://localhost/users/" + req.session.user._id + "/event"}
 		EventController.sendExternalEvent url, "rfq", "driver_ready", data
 
 	create: (req, res)=>
