@@ -11,7 +11,7 @@ module.exports = (User, Account, EventController) =>
 				else
 					deliver = use.deliveries
 
-				console.log deliveries
+				console.log deliver
 				
 				limit = 1
 				if req.session?.account? && req.params.user_id == req.session.account.foursquareId
