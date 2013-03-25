@@ -10,6 +10,9 @@ module.exports = (User, Account, EventController) =>
 					deliver = []
 				else
 					deliver = use.deliveries
+
+				console.log deliveries
+				
 				limit = 1
 				if req.session?.account? && req.params.user_id == req.session.account.foursquareId
 					limit = 10
