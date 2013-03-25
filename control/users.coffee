@@ -92,7 +92,7 @@ module.exports = (User, Account, EventController) =>
 
 	completeDelivery: (req, res)=>
 		url = "http://localhost:3040/event"
-		data = {delivery_id: req.params.delivery_id}
+		data = {delivery_id: req.params.delivery_id, driverUri: "http://localhost/users/" + req.session.user._id + "/event"}
 		EventController.sendExternalEvent url, "delivery", "complete", data
 
 		url = "http://localhost:3080/event"
