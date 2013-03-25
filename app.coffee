@@ -138,6 +138,9 @@ exports.createServer = ->
 	EventEmitter.on "rfq:delivery_ready", (body)=>
 		DeliveryController.emitDelivery body
 
+	EventEmitter.on 'rfq:bid_awarded', (body)=>
+		UserController.bidAwarded body
+
 	app.get '/auth/foursquare', passport.authenticate('foursquare')
 
 

@@ -82,6 +82,14 @@ module.exports = (User, Account, EventController) =>
 		Account.updateUserBid req.body.bid, req.params.foursquareId, (err)=>
 			res.redirect '/profile/' + req.params.foursquareId
 
+	bidAwarded: (body)=>
+		bid = body.bids[0]
+		user_id = bid.driverUri.substring("http://localhost/users/".length(), bid.driverUri.indexOf("/event"))
+		EventController.sendExternalEvent user_id, "rfq", "bid_awarded", body
+		Driver.addDelivery bid.driverUri, {price: bid.bid, due: body.deliveryTime, delivery_id: body.delivery_id, address: body.address}, (err)=>
+			return console.log err if err
+			console.log "Succeeded?"
+
 
 	updateUserLocation: (req, res)=>
 		user = JSON.parse req.body.user

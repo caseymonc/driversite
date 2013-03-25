@@ -11,7 +11,8 @@ module.exports = (db) ->
 		foursquareId: String,
 		flowershopId: String,
 		phone: String,
-		lastDelivery: {delivery_id : String, uri : String}
+		lastDelivery: {delivery_id : String, uri : String},
+		deliveries: [{price: Number, due: Date, address: String, delivery_id: String}]
 	}, { collection : 'driver_users' })
 
 
@@ -32,6 +33,16 @@ module.exports = (db) ->
 					return cb(null, user ,true)
 			else
 				cb null, user, false
+
+	UserSchema.statics.addDelivery = (user_id, delivery, cb)->
+		@findOne({foursquareId: user_id}).exec (err, user)=>
+			return cb err if err
+			return cb {error : "No Driver"} if not user
+			user.deliveries = [] if not user.deliveries?
+			user.deliveries.push(delivery)
+			user.save (err)=>
+				return cb err if err?
+				cb null, user
 
 
 
