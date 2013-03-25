@@ -85,7 +85,7 @@ module.exports = (User, Account, EventController) =>
 	bidAwarded: (body)=>
 		bid = body.bids[0]
 		user_id = bid.driverUri.substring("http://localhost/users/".length, bid.driverUri.indexOf("/event"))
-		Driver.addDelivery user_id, {price: bid.bid, due: body.deliveryTime, delivery_id: body.delivery_id, address: body.address}, (err)=>
+		User.addDelivery user_id, {price: bid.bid, due: body.deliveryTime, delivery_id: body.delivery_id, address: body.address}, (err)=>
 			return console.log err if err
 			console.log "Succeeded?"
 
