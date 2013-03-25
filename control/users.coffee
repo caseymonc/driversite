@@ -98,6 +98,8 @@ module.exports = (User, Account, EventController) =>
 		url = "http://localhost:3080/event"
 		EventController.sendExternalEvent url, "delivery", "complete", data
 
+		res.redirect "/profile/" + req.params.user_id
+
 	bidAwarded: (body)=>
 		bid = body.bids[0]
 		user_id = bid.driverUri.substring("http://localhost/users/".length, bid.driverUri.indexOf("/event"))

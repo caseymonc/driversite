@@ -135,7 +135,7 @@ exports.createServer = ->
 		EventController.handleEvent req, res
 		return res.send "OK"
 
-	app.get '/users/:user_id/deliveries/:delivery_id/complete', (req, res)->
+	app.get '/users/:user_id/delivery/:delivery_id/complete', (req, res)->
 		UserController.completeDelivery req, res
 
 	EventEmitter.on "rfq:delivery_ready", (body)=>
