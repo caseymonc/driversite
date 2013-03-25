@@ -45,10 +45,14 @@ block content
 		#deliveryList
 			.divider
 					.innerDivider
-			mixin listItem(address, id)
-				div(data-role="collapsible", class="order", data-theme="b", data-collapsed-icon="arrow-d", data-inset="true", data-expanded-icon="arrow-u")
-					h4 #{address}
-
+						mixin deliveryItem(delivery, user)
+							li(data-icon="check")
+								a(href="/users/#{user._id}/delivery/#{delivery._id}/complete", rel="external")
+									h3 #{delivery.address}
+									p Due: #{delivery.due}
+						ul(data-role="listview", data-inset="false")
+							each delivery in user.deliveries
+								+deliveryItem(delivery)
 
 block footer
 	a(href="/users/#{user_id}/register/uri", data-transition="slide", style="margin:4px") Available For Deliveries
