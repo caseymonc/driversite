@@ -51,7 +51,7 @@ block content
 									h3 #{delivery.address}
 									p Due: #{delivery.due}
 						ul(data-role="listview", data-inset="false")
-							-if user.deliveries
+							- if user.deliveries
 								each delivery in user.deliveries
 									+deliveryItem(delivery)
 
